@@ -69,6 +69,9 @@ public class User {
         // Ako barem jedno od polja nije postavljeno vrati false (dodatne provjera koje polje nije ispravno)
         return checkifEnteredName() && checkifEnteredSurname() && checkifEnteredEmail() && checkifEnteredPassword() && checkifEnteredPin() && checkifEnteredPhoneNum() && checkIfPinHasFourDigits(); // Ako su sva polja postavljena vrati true (izvrši registraciju)
     }
+    public boolean loginValidation(){
+        return checkifEnteredEmail() && checkifEnteredPassword();
+    }
     // Provjera je li ime postavljeno
     public boolean checkifEnteredName(){
         return !sName.isEmpty();

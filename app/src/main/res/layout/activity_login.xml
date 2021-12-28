@@ -17,6 +17,7 @@
         android:ems="10"
         android:hint="@string/hintloginemail"
         android:inputType="textEmailAddress"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/editTextLoginPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,6 +33,7 @@
         android:ems="10"
         android:hint="@string/hintloginpassword"
         android:inputType="textPassword"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextLoginEmail" />
