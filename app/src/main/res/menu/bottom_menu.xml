@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home"
+        android:title="@string/navHome" />
+    <item
+        android:id="@+id/chartFragment"
+        android:icon="@drawable/ic_chart"
+        android:title="@string/navChart" />
+    <item
+        android:id="@+id/walletFragment"
+        android:icon="@drawable/ic_wallet"
+        android:title="@string/navWallet" />
+    <item
+        android:id="@+id/tradeFragment"
+        android:icon="@drawable/ic_buysell"
+        android:title="@string/navTrade" />
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/navProfile" />
+</menu>

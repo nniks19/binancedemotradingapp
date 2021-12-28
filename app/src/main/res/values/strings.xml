@@ -1,0 +1,57 @@
+<resources>
+    <!--Home Screen-->
+    <string name="appname">Trgovanje kriptovalutama\n | DEMO |</string>
+    <string name="app_name">Binance demo trading app</string>
+    <string name="login">Prijava</string>
+    <string name="register">Registracija</string>
+    <!--Register screen-->
+    <string name="confirmregister">Registriraj me</string>
+    <string name="hintname">Ime</string>
+    <string name="hintsurname">Prezime</string>
+    <string name="hintemail">Email</string>
+    <string name="hintpassword">Lozinka</string>
+    <string name="hintphonenum">Broj mobitela</string>
+    <string name="hintPIN">PIN (4 znamenke)</string>
+    <string name="registrationSuccess">Uspješno ste se registrirali! Nastavite na prijavu.</string>
+    <!--Login screen-->
+    <string name="hintloginemail">Email</string>
+    <string name="hintloginpassword">Lozinka</string>
+    <string name="btnsignin">Prijavi se</string>
+    <string name="loginSuccess">Uspješno ste se prijavili!</string>
+    <!--Validation error messages-->
+    <string name="empty_name">Obavezan je unos imena!</string>
+    <string name="empty_surname">Ubavezan je unos prezimena!</string>
+    <string name="empty_email">Obavezan je unos email adrese!</string>
+    <string name="empty_password">Obavezan je unos lozinke!</string>
+    <string name="empty_phone_num">Obavezan je unos broja mobitela!</string>
+    <string name="empty_pin">Obavezan je unos PIN-a!</string>
+    <string name="pin_digits_match">Pin mora sadržavati 4 znamenke!</string>
+    <!--Firebase error handlers-->
+    <!--Registration errors-->
+    <string name="CERTIFICATE_FETCH_FAILED">Nije uspjelo dohvaćanje javnog ključa certifikata koji je potreban za provjeru JNT-a (ID token ili kolačić sesije).</string>
+    <string name="EMAIL_ALREADY_EXISTS">Korisnik sa navedenom email adresom postoji.</string>
+    <string name="EXPIRED_ID_TOKEN">ID tokena specifičan za verifyIdToken() je istekao.</string>
+    <string name="EXPIRED_SESSION_COOKIE">Kolačić sesije koji služi za verifySessionCookie() je istekao.</string>
+    <string name="INVALID_DYNAMIC_LINK_DOMAIN">Navedena domena sa dinamičkim linkom nije konfigurirana ili dozvoljena na trenutnom projektu. Povezano je sa API-jima za email.</string>
+    <string name="INVALID_ID_TOKEN">ID token specifičan za verifyIdToken() je neispravan.</string>
+    <string name="INVALID_SESSION_COOKIE">Kolačić sesije koji služi za verifySessionCookie() je neispravan.</string>
+    <string name="PHONE_NUMBER_ALREADY_EXISTS">Korisnik sa ovim brojem mobitela već postoji.</string>
+    <string name="REVOKED_ID_TOKEN">ID token koji služi za verifyIdToken() je opozvan.</string>
+    <string name="REVOKED_SESSION_COOKIE">Kolačić sesije specificiran za verifySessionCookie() je istekao.</string>
+    <string name="UNAUTHORIZED_CONTINUE_URL">Domena URL-a za nastavak nije na popisu dopuštenih. Povezano je sa API-jima koji služe za radnju sa emailom.</string>
+    <string name="USER_NOT_FOUND">Korisnik sa ovom email adresom nije pronađen!</string>
+    <string name="EMAIL_ALREADY_IN_USE">Email se već koristi!</string>
+    <string name="INVALID_EMAIL">Email koji ste napisali je krivoga formata.</string>
+    <!--Login errors-->
+    <string name="LOGIN_FAIL">Prijava nije uspjela!</string>
+    <string name="WRONG_PASSWORD">Upisali ste krivu lozinku!</string>
+    <!--Navigation-->
+    <string name="navHome">Početna</string>
+    <string name="navChart">Graf</string>
+    <string name="navWallet">Novčanik</string>
+    <string name="navTrade">Kupi/Prodaj</string>
+    <string name="navProfile">Profil</string>
+    <!--Image descriptions-->
+    <string name="binance_logo_description">Slika Binance logotipa</string>
+</resources>
+

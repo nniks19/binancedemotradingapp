@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menu_nav"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.binancedemotradingapp.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.binancedemotradingapp.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/walletFragment"
+        android:name="com.example.binancedemotradingapp.WalletFragment"
+        android:label="fragment_wallet"
+        tools:layout="@layout/fragment_wallet" />
+    <fragment
+        android:id="@+id/chartFragment"
+        android:name="com.example.binancedemotradingapp.ChartFragment"
+        android:label="fragment_graph"
+        tools:layout="@layout/fragment_chart" />
+    <fragment
+        android:id="@+id/tradeFragment"
+        android:name="com.example.binancedemotradingapp.TradeFragment"
+        android:label="fragment_trade"
+        tools:layout="@layout/fragment_trade" />
+</navigation>

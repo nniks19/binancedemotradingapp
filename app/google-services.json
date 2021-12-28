@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "523410794009",
+    "project_id": "binance-demo-trading-app",
+    "storage_bucket": "binance-demo-trading-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:523410794009:android:f579e3d989940ebc83ec88",
+        "android_client_info": {
+          "package_name": "com.example.binancedemotradingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "523410794009-krpj0q9kln8n0r3amlie4hhpa7ev4q57.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXK0mxT5oa1SwsW1PkGbyuu0F4mwPDBhE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "523410794009-krpj0q9kln8n0r3amlie4hhpa7ev4q57.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
