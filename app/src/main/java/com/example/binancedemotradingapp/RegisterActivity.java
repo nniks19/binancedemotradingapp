@@ -74,6 +74,8 @@ public class RegisterActivity extends AppCompatActivity {
                             // Registracija uspjela
                             FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(RegisterActivity.this, "Registracija je uspjela!", Toast.LENGTH_SHORT).show();
+                            oUser.setId(user.getUid());
+                            oUser.writeNewUser(oUser);
                             updateUI(user);
                         } else {
                             // Registracija nije uspjela

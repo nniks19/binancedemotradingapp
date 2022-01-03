@@ -1,12 +1,18 @@
 package com.example.binancedemotradingapp;
 
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class User {
+    private String sId;
     private String sName;
     private String sSurname;
     private String sEmail;
     private String sPassword;
     private String sPin;
     private String sPhoneNumber;
+    private DatabaseReference mDatabase;
 
     // Getters (getteri)
     // Dohvaćanje imena
@@ -37,6 +43,8 @@ public class User {
     public String getPhoneNumber(){
         return sPhoneNumber;
     }
+    // Dohvaćanje ID-a
+    public String getId(){return sId;}
 
     // Setters (setteri)
     // Postavljanje imena
@@ -63,6 +71,8 @@ public class User {
     public void setPhoneNumber(String phonenum){
         this.sPhoneNumber = phonenum;
     }
+    // Postavljanje ID-a
+    public void setId(String id){this.sId = id;}
 
     // Provjere
     public boolean registerValidation(){
@@ -99,5 +109,13 @@ public class User {
     // Provjera ima li pin 4 znamenke
     public boolean checkIfPinHasFourDigits(){
         return sPin.length() == 4;
+    }
+
+    public void writeNewUser(User oUser) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://binance-demo-trading-app-default-rtdb.europe-west1.firebasedatabase.app/");
+        DatabaseReference myRef = database.getReference();
+        oUser.setPassword("hidden");
+        myRef.child("users").child(String.valueOf(oUser.getId())).setValue(oUser);
+
     }
 }

@@ -21,12 +21,11 @@
 
     <Button
         android:id="@+id/btnRegister"
-        style="Widget.DeviceDefault.Button"
+        style="@style/btnStyle"
         android:layout_width="wrap_content"
         android:layout_height="55dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/btnbackgrnd_color"
         android:text="@string/register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
