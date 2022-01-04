@@ -103,6 +103,7 @@ public class LoginActivity extends AppCompatActivity {
         if (user!= null){
             Intent intentMenuAct = new Intent(LoginActivity.this, MenuActivity.class);
             intentMenuAct.putExtra("login_success", getString(R.string.loginSuccess));
+            intentMenuAct.putExtra("user_id", user.getUid());
             intentMenuAct.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intentMenuAct);
             finish();

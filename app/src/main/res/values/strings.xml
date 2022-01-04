@@ -53,5 +53,7 @@
     <string name="navProfile">Profil</string>
     <!--Image descriptions-->
     <string name="binance_logo_description">Slika Binance logotipa</string>
+    <!--Home fragment-->
+    <string name="welcome_text">Dobrodošli</string>
 </resources>
 
