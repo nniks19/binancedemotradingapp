@@ -69,15 +69,14 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         String userId = ((MenuActivity) getActivity()).user_id;
         View returnView = inflater.inflate(R.layout.fragment_home, container, false);
-        TextView txtOne = (TextView) returnView.findViewById(R.id.txtViewWelcomeName);
+        TextView txtNameSurname = (TextView) returnView.findViewById(R.id.txtViewWelcomeName);
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://binance-demo-trading-app-default-rtdb.europe-west1.firebasedatabase.app/");
         DatabaseReference myRef = database.getReference();
 
         myRef.child("users").child(userId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                txtOne.setText(dataSnapshot.child("nameSurname").getValue().toString());
-                //sSurname = dataSnapshot.Child("surname").getValue().toString();
+                txtNameSurname.setText(dataSnapshot.child("nameSurname").getValue().toString());
             }
 
             @Override

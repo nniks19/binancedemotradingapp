@@ -55,5 +55,9 @@
     <string name="binance_logo_description">Slika Binance logotipa</string>
     <!--Home fragment-->
     <string name="welcome_text">Dobrodošli</string>
+    <!--Wallet Fragment-->
+    <string name="current_balance">Trenutno stanje</string>
+    <!--Wallets Logs Class-->
+    <string name="creation_date">Datum kreiranja: </string>
 </resources>
 

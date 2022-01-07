@@ -1,17 +1,8 @@
 package com.example.binancedemotradingapp;
 
 
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.Objects;
 
 public class User {
     private String sId;
@@ -123,6 +114,10 @@ public class User {
         DatabaseReference myRef = database.getReference();
         oUser.setPassword("hidden");
         myRef.child("users").child(String.valueOf(oUser.getId())).setValue(oUser);
-
+        Wallet oWallet = new Wallet();
+        oWallet.writeNewWallet(oUser.getId());
     }
+
+    // Rad sa bazom podataka
+
 }
