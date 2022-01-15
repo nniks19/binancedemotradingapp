@@ -1,12 +1,8 @@
-package com.example.binancedemotradingapp;
-
-import android.content.Context;
-import android.content.res.Resources;
+package com.example.binancedemotradingapp.Models;
 
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.example.binancedemotradingapp.R;
 
 public class Wallet {
     private String sWallet_id;

@@ -1,4 +1,4 @@
-package com.example.binancedemotradingapp;
+package com.example.binancedemotradingapp.Models;
 
 
 import com.google.firebase.database.DatabaseReference;
@@ -80,6 +80,15 @@ public class User {
     public boolean loginValidation(){
         return checkifEnteredEmail() && checkifEnteredPassword();
     }
+    public boolean editValidation(String hashedPassword, String pin){
+        return checkifEnteredName() && checkifEnteredSurname() && checkifEnteredEmail() && checkifEnteredPhoneNum() && checkifEnteredPassword() && checkifEnteredPin() && checkIfPasswordCorrect(hashedPassword) && checkIfPinCorrect(pin);
+    }
+    public boolean checkIfPasswordCorrect(String hashedPassword){
+        return this.sPassword.equals(hashedPassword); // Ovo trenutno nije tocno jer cu morati firebase hash provjerit je li jednak lozinci koja je spremljena u bazi
+    }
+    public boolean checkIfPinCorrect(String pin){
+        return this.sPin.equals(pin);
+    }
     // Provjera je li ime postavljeno
     public boolean checkifEnteredName(){
         return !sName.isEmpty();
@@ -108,6 +117,7 @@ public class User {
     public boolean checkIfPinHasFourDigits(){
         return sPin.length() == 4;
     }
+
 
     public void writeNewUser(User oUser) {
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://binance-demo-trading-app-default-rtdb.europe-west1.firebasedatabase.app/");

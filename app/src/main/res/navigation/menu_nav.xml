@@ -6,27 +6,27 @@
     app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.binancedemotradingapp.HomeFragment"
+        android:name="com.example.binancedemotradingapp.Fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.binancedemotradingapp.ProfileFragment"
+        android:name="com.example.binancedemotradingapp.Fragments.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/walletFragment"
-        android:name="com.example.binancedemotradingapp.WalletFragment"
+        android:name="com.example.binancedemotradingapp.Fragments.WalletFragment"
         android:label="fragment_wallet"
         tools:layout="@layout/fragment_wallet" />
     <fragment
         android:id="@+id/chartFragment"
-        android:name="com.example.binancedemotradingapp.ChartFragment"
+        android:name="com.example.binancedemotradingapp.Fragments.ChartFragment"
         android:label="fragment_graph"
         tools:layout="@layout/fragment_chart" />
     <fragment
         android:id="@+id/tradeFragment"
-        android:name="com.example.binancedemotradingapp.TradeFragment"
+        android:name="com.example.binancedemotradingapp.Fragments.TradeFragment"
         android:label="fragment_trade"
         tools:layout="@layout/fragment_trade" />
 </navigation>

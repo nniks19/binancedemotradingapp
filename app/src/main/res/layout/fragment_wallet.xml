@@ -5,7 +5,7 @@
     android:id="@+id/walletFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WalletFragment">
+    tools:context=".Fragments.WalletFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -38,6 +38,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

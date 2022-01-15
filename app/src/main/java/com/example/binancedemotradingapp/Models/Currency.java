@@ -1,4 +1,4 @@
-package com.example.binancedemotradingapp;
+package com.example.binancedemotradingapp.Models;
 
 public class Currency {
     private String sCurrency_name;

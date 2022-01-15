@@ -1,14 +1,14 @@
-package com.example.binancedemotradingapp;
+package com.example.binancedemotradingapp.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.binancedemotradingapp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MenuActivity extends AppCompatActivity {

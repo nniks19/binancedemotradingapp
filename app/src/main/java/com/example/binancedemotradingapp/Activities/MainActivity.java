@@ -1,4 +1,4 @@
-package com.example.binancedemotradingapp;
+package com.example.binancedemotradingapp.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,13 +8,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.binancedemotradingapp.Models.Symbol;
+import com.example.binancedemotradingapp.Models.SymbolResponse;
+import com.example.binancedemotradingapp.R;
+import com.example.binancedemotradingapp.RetrofitClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private Button btnRegister;
     private Button btnLogin;
     private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
                 String register_message = extras.getString("register_success");
                 Toast.makeText(MainActivity.this, register_message, Toast.LENGTH_SHORT).show();
             }
+
         }
         mAuth = FirebaseAuth.getInstance();
         btnRegister = findViewById(R.id.btnRegister);
@@ -44,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
     @Override
