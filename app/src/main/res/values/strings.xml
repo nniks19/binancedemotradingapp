@@ -66,5 +66,12 @@
     <string name="pin_is_required">Vaš pin (4 znamenke) - obavezan unos</string>
     <!--Trade Fragment-->
     <string name="choose_pair">Odaberite par</string>
+    <string name="price_info">Cijena: </string>
+    <string name="buy">Kupi</string>
+    <string name="sell">Prodaj</string>
+    <!--Trade Buy Fragment-->
+    <string name="info_buy_confirmation">Jeste li sigurni da želite kupiti</string>
+    <string name="info_about_buy_price">po cijeni od</string>
+    <string name="close_buy_fragment">Zatvori</string>
 </resources>
 

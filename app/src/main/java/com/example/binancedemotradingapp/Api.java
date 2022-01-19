@@ -10,7 +10,9 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 
 public interface Api {
-    String BASE_URL = "https://api.binance.com";
-    @GET("api/v3/exchangeInfo")
+    String BASE_URL = "https://api.binance.com/api/";
+    @GET("v3/exchangeInfo")
     Call<SymbolResponse> getSymbols();
+    @GET("v3/ticker/price")
+    Call<List<SymbolPrice>> getSymbolPrices();
 }

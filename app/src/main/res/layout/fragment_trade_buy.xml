@@ -2,10 +2,10 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tradeFragment"
+    android:id="@+id/btnCloseBuy"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.TradeFragment">
+    tools:context=".Fragments.TradeBuyFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,82 +13,69 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/txtViewTradeInfo"
+            android:id="@+id/txtInfoBuyConfrmation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/choose_pair"
+            android:layout_marginTop="16dp"
+            android:text="@string/info_buy_confirmation"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-            android:id="@+id/spinnerPairs"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/txtViewBuyPair"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:minHeight="48dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtViewTradeInfo"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <TextView
-            android:id="@+id/text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:fontFamily="monospace"
-            android:gravity="center"
-            android:textSize="48sp"
+            android:text="BTC"
+            android:textSize="34sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerPairs" />
+            app:layout_constraintTop_toBottomOf="@+id/txtInfoBuyConfrmation" />
 
         <TextView
-            android:id="@+id/txtViewPriceInfo"
+            android:id="@+id/txtInfoAboutBuyPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/price_info"
+            android:layout_marginTop="16dp"
+            android:text="@string/info_about_buy_price"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_view" />
+            app:layout_constraintTop_toBottomOf="@+id/txtViewBuyPair" />
 
         <TextView
-            android:id="@+id/txtViewPrice"
+            android:id="@+id/txtViewBuyPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="0.00"
-            android:textSize="12sp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtViewPriceInfo" />
+            app:layout_constraintTop_toBottomOf="@+id/txtInfoAboutBuyPrice" />
 
         <Button
-            android:id="@+id/btnBuy"
+            android:id="@+id/btnConfirmBuy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
             android:text="@string/buy"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnSell"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/btnSell"
+            android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="@string/sell"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/close_buy_fragment"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btnBuy" />
-
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
