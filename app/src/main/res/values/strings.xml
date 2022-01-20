@@ -49,7 +49,7 @@
     <string name="navHome">Početna</string>
     <string name="navChart">Graf</string>
     <string name="navWallet">Novčanik</string>
-    <string name="navTrade">Kupi/Prodaj</string>
+    <string name="navTrade">Kupi</string>
     <string name="navProfile">Profil</string>
     <!--Image descriptions-->
     <string name="binance_logo_description">Slika Binance logotipa</string>
@@ -60,18 +60,26 @@
     <!--Wallets Logs Class-->
     <string name="creation_date">Datum kreiranja: </string>
     <!--Profile Fragment-->
-    <string name="edit_user_profile">Uredite informacije o profilu</string>
+    <string name="edit_user_profile">Vaš profil</string>
     <string name="update_profile">Ažuriraj</string>
-    <string name="password_is_required">Vaša lozinka - obavezan unos</string>
+    <string name="password_is_required">Nova lozinka - obavezan unos</string>
     <string name="pin_is_required">Vaš pin (4 znamenke) - obavezan unos</string>
     <!--Trade Fragment-->
     <string name="choose_pair">Odaberite par</string>
     <string name="price_info">Cijena: </string>
     <string name="buy">Kupi</string>
     <string name="sell">Prodaj</string>
-    <!--Trade Buy Fragment-->
-    <string name="info_buy_confirmation">Jeste li sigurni da želite kupiti</string>
+    <string name="buy_amount">Unesite količinu</string>
+    <!--Trade Buy Dialog-->
+    <string name="info_buy_title">Kupovina</string>
+    <string name="info_buy_confirmation">Jeste li sigurni da želite kupiti </string>
+    <string name="info_buy_confirmation_extended"> po cijeni od</string>
+    <string name="yes">Da</string>
+    <string name="no">Ne</string>
+    <string name="yes_confirmation">Kupovina uspješna!</string>
+    <string name="no_confirmation">Odustali ste od kupnje!</string>
     <string name="info_about_buy_price">po cijeni od</string>
     <string name="close_buy_fragment">Zatvori</string>
+    <string name="time_expired">Vrijeme za kupnju je isteklo!</string>
 </resources>
 

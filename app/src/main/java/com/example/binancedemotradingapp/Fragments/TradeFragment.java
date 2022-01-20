@@ -1,6 +1,9 @@
 package com.example.binancedemotradingapp.Fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -23,6 +27,8 @@ import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,7 +47,6 @@ public class TradeFragment extends Fragment {
     TextView textView;
     TextView txtViewPrice;
     Button btnBuy;
-    Button btnSell;
 
     public TradeFragment() {
         // Required empty public constructor
@@ -55,6 +60,7 @@ public class TradeFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
     }
 
@@ -66,7 +72,6 @@ public class TradeFragment extends Fragment {
         textView = returnView.findViewById(R.id.text_view);
         txtViewPrice = returnView.findViewById(R.id.txtViewPrice);
         btnBuy = returnView.findViewById(R.id.btnBuy);
-        btnSell = returnView.findViewById(R.id.btnSell);
         getSymbols();
 
         return returnView;
@@ -82,7 +87,9 @@ public class TradeFragment extends Fragment {
                 allSymbols = mySymbolList.getSymbols();
                 List<String> items = new ArrayList<String>();
                 for (Symbol oSymbol : allSymbols){
-                    items.add(oSymbol.getSymbol());
+                    if(oSymbol.getSymbol().contains("USDT")) {
+                        items.add(oSymbol.getSymbol());
+                    }
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(returnView.getContext(), android.R.layout.simple_list_item_1, items);
                 dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -119,19 +126,61 @@ public class TradeFragment extends Fragment {
                         btnBuy.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                TradeBuyFragment fragment2 = new TradeBuyFragment();
-                                FragmentManager fragmentManager = getFragmentManager();
-                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                fragmentTransaction.replace(this, fragment2);
-                                fragmentTransaction.commit();
-                            }
-                        });
-                        btnSell.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
+                                AlertDialog.Builder builder;
+                                builder = new AlertDialog.Builder(getContext());
 
+
+                                builder.setMessage(getString(R.string.info_buy_confirmation) + " " + oSymbolPrice.getSymbol() + "?\n" + getString(R.string.info_buy_confirmation_extended) + " " + oSymbolPrice.getPrice())
+                                        .setCancelable(false)
+                                        .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                // Pritisak na tipku da
+                                                Toast.makeText(getContext(),getString(R.string.yes_confirmation),
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        })
+                                        .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                //  Pritisak na tipku ne
+                                                dialog.cancel();
+                                                Toast.makeText(getContext(),getString(R.string.no_confirmation),
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
+                                AlertDialog alert = builder.create();
+                                alert.setOnShowListener(new DialogInterface.OnShowListener() {
+                                    private static final int AUTO_DISMISS_MILLIS = 6000;
+                                    @Override
+                                    public void onShow(final DialogInterface dialog) {
+                                        final Button defaultButton = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_NEGATIVE);
+                                        final CharSequence negativeButtonText = defaultButton.getText();
+                                        new CountDownTimer(AUTO_DISMISS_MILLIS, 100) {
+                                            @Override
+                                            public void onTick(long millisUntilFinished) {
+                                                defaultButton.setText(String.format(
+                                                        Locale.getDefault(), "%s (%d)",
+                                                        negativeButtonText,
+                                                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) + 1 //add one so it never displays zero
+                                                ));
+                                            }
+                                            @Override
+                                            public void onFinish() {
+                                                if (((AlertDialog) dialog).isShowing()) {
+                                                    dialog.dismiss();
+                                                    Toast.makeText(getContext(),getString(R.string.time_expired),
+                                                            Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        }.start();
+                                    }
+                                });
+
+                                alert.setTitle(getString(R.string.info_buy_title));
+                                alert.show();
                             }
                         });
+
                     }
                 }
             }

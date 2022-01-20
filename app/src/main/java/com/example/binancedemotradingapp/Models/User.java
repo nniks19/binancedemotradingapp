@@ -80,12 +80,6 @@ public class User {
     public boolean loginValidation(){
         return checkifEnteredEmail() && checkifEnteredPassword();
     }
-    public boolean editValidation(String hashedPassword, String pin){
-        return checkifEnteredName() && checkifEnteredSurname() && checkifEnteredEmail() && checkifEnteredPhoneNum() && checkifEnteredPassword() && checkifEnteredPin() && checkIfPasswordCorrect(hashedPassword) && checkIfPinCorrect(pin);
-    }
-    public boolean checkIfPasswordCorrect(String hashedPassword){
-        return this.sPassword.equals(hashedPassword); // Ovo trenutno nije tocno jer cu morati firebase hash provjerit je li jednak lozinci koja je spremljena u bazi
-    }
     public boolean checkIfPinCorrect(String pin){
         return this.sPin.equals(pin);
     }
