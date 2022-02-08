@@ -69,11 +69,15 @@
     <string name="price_info">Cijena: </string>
     <string name="buy">Kupi</string>
     <string name="sell">Prodaj</string>
-    <string name="buy_amount">Unesite količinu</string>
+    <string name="buy_amount">Unesite iznos u dolarima</string>
+    <string name="invalid_pin">Pogrešan pin!</string>
+    <string name="amount_missing">Potrebno je upisati iznos za koji kupujete kriptovalutu!</string>
+    <string name="amount_greater_than">Upisan iznos je veći od dostupnog iznosa sa Vašeg novčanika!</string>
     <!--Trade Buy Dialog-->
     <string name="info_buy_title">Kupovina</string>
     <string name="info_buy_confirmation">Jeste li sigurni da želite kupiti </string>
     <string name="info_buy_confirmation_extended"> po cijeni od</string>
+
     <string name="yes">Da</string>
     <string name="no">Ne</string>
     <string name="yes_confirmation">Kupovina uspješna!</string>
@@ -81,5 +85,35 @@
     <string name="info_about_buy_price">po cijeni od</string>
     <string name="close_buy_fragment">Zatvori</string>
     <string name="time_expired">Vrijeme za kupnju je isteklo!</string>
+
+    <!--MP Android Charts translate -->
+    <string name="data_loading">Učitavanje podataka...</string>
+
+    <!--OnClick Alert Dialog -> ChartFragment -> Candle info -->
+    <string name="alert_dialog_candle_info_title">Informacije o svijeći</string>
+    <string name="date">Datum i vrijeme:</string>
+    <string name="open">Open:</string>
+    <string name="high">High:</string>
+    <string name="low">Low:</string>
+    <string name="close">Close:</string>
+    <string name="volume">Volumen:</string>
+    <string name="date_info">Datum i vrijeme odabrane svijeće</string>
+    <string name="open_info">Početna cijena odabrane svijeće</string>
+    <string name="high_info">Najviša cijena odabrane svijeće</string>
+    <string name="low_info">Najniža cijena odabrane svijeće</string>
+    <string name="close_info">Posljednja cijena odabrane svijeće</string>
+    <string name="volume_info">Ukupna svota kupovina/prodaja unutar svijeće</string>
+    <string name="close_alert_dialog_candle_info">Zatvori</string>
+    <string name="chart_info">Informacije o grafu</string>
+    <string name="chart_candle_amount">Ukupno svijeća:</string>
+    <string name="chosen_symbol">Odabrani simbol:</string>
+    <string name ="chosen_timeframe">Odabrani vremenski period:</string>
+    <string name="red_candle_count">Broj crvenih svijeća:</string>
+    <string name="green_candle_count">Broj zelenih svijeća:</string>
+    <string name="equal_candle_count">Broj svijeća sa istom prethodnom close cijenom:</string>
+    <!-- TimeFrames -->
+    <string name="min_15">15m</string>
+    <string name="h_1">1h</string>
+    <string name="d_1">1d</string>
 </resources>
 
