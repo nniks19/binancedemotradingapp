@@ -25,6 +25,8 @@ import com.example.binancedemotradingapp.Activities.MenuActivity;
 import com.example.binancedemotradingapp.Models.Symbol;
 import com.example.binancedemotradingapp.Models.SymbolPrice;
 import com.example.binancedemotradingapp.Models.SymbolResponse;
+import com.example.binancedemotradingapp.Models.Trade;
+import com.example.binancedemotradingapp.Models.Wallet;
 import com.example.binancedemotradingapp.R;
 import com.example.binancedemotradingapp.RetrofitClient;
 import com.google.firebase.database.DataSnapshot;
@@ -53,6 +55,7 @@ public class TradeFragment extends Fragment {
     public String userId;
     private List<Symbol> allSymbols;
     public Float fCurrency_Amount;
+    public Float total_amount;
     View returnView;
     TextView textView;
     TextView txtViewPrice;
@@ -174,21 +177,23 @@ public class TradeFragment extends Fragment {
                                     Toast.makeText(getContext(), getString(R.string.amount_missing), Toast.LENGTH_SHORT).show();
                                 } else if( Float.parseFloat(editTextBuyAmount.getText().toString()) > fCurrency_Amount){
                                     Toast.makeText(getContext(), getString(R.string.amount_greater_than), Toast.LENGTH_SHORT).show();
-                                }
-                                else {
+                                }else if( Float.parseFloat(editTextBuyAmount.getText().toString()) < 10) {
+                                    Toast.makeText(getContext(), getString(R.string.amount_greater_than_ten), Toast.LENGTH_SHORT).show();
+                                } else {
                                     myRef.child("users").child(userId).addValueEventListener(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                             String enteredPin = editTextPin.getText().toString();
                                             String user_real_pin = dataSnapshot.child("pin").getValue().toString();
                                             if (enteredPin.equals(user_real_pin)) {
-                                                Float total_amount = Float.parseFloat(editTextBuyAmount.getText().toString());
+                                                total_amount = Float.parseFloat(editTextBuyAmount.getText().toString());
                                                 total_amount = total_amount / fCoinPrice;
                                                 builder.setMessage(getString(R.string.info_buy_confirmation) + "\n" + Float.toString(total_amount) + " " + oSymbolPrice.getSymbol().replace("USDT", "") + "?\n" + getString(R.string.info_buy_confirmation_extended) + " " + editTextBuyAmount.getText().toString() + " USD")
                                                         .setCancelable(false)
                                                         .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                                                             public void onClick(DialogInterface dialog, int id) {
                                                                 // Pritisak na tipku da
+                                                                saveTrade(oSymbolPrice.getSymbol(), oSymbolPrice.getPrice());
                                                                 Toast.makeText(getContext(), getString(R.string.yes_confirmation),
                                                                         Toast.LENGTH_SHORT).show();
                                                             }
@@ -280,6 +285,60 @@ public class TradeFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 fCurrency_Amount = Float.parseFloat(snapshot.child("dCurrency_amount").getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    public void saveTrade(String symbol_bought_pair, String symbol_bought_price){
+    //total_amount -> Upisana kolicina od korisnika koliko zeli uloziti dolara
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://binance-demo-trading-app-default-rtdb.europe-west1.firebasedatabase.app/");
+
+        DatabaseReference myRef = database.getReference().child("trades");
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Trade oTrade = new Trade();
+                oTrade.setsAmount(editTextBuyAmount.getText().toString());
+                oTrade.setsPair(symbol_bought_pair);
+                oTrade.setsStatus("active");
+                oTrade.setsBuy_price(symbol_bought_price);
+                oTrade.setsProfit(" ");
+                oTrade.setsSell_price(" ");
+                oTrade.setlTimestamp(System.currentTimeMillis());
+                if(snapshot.child(userId).exists()){
+                    String key =  myRef.child(userId).push().getKey();           //this returns the unique key generated by firebase
+                    myRef.child(userId).child(key).setValue(oTrade);
+                    subtractFromUser();
+
+                } else{
+                    myRef.setValue(userId);
+                    String key =  myRef.child(userId).push().getKey();           //this returns the unique key generated by firebas
+                    myRef.child(userId).child(key).setValue(oTrade);
+                    subtractFromUser();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+    }
+    public void subtractFromUser(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://binance-demo-trading-app-default-rtdb.europe-west1.firebasedatabase.app/");
+        DatabaseReference myRefWallet = database.getReference().child("wallets").child(userId + "_1").child("oCurrency");
+        myRefWallet.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Float current_balance = Float.parseFloat(snapshot.child("dCurrency_amount").getValue().toString());
+                String sCurrency_Name = snapshot.child("sCurrency_name").getValue().toString();
+                myRefWallet.child("dCurrency_amount").setValue(current_balance - Float.parseFloat(editTextBuyAmount.getText().toString()));
             }
 
             @Override

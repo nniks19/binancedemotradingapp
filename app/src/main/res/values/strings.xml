@@ -73,6 +73,8 @@
     <string name="invalid_pin">Pogrešan pin!</string>
     <string name="amount_missing">Potrebno je upisati iznos za koji kupujete kriptovalutu!</string>
     <string name="amount_greater_than">Upisan iznos je veći od dostupnog iznosa sa Vašeg novčanika!</string>
+    <string name="amount_greater_than_ten">Iznos kupovine mora biti veći od 10 USD!</string>
+
     <!--Trade Buy Dialog-->
     <string name="info_buy_title">Kupovina</string>
     <string name="info_buy_confirmation">Jeste li sigurni da želite kupiti </string>

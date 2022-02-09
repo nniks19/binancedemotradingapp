@@ -47,7 +47,7 @@ public class Wallet {
         Wallet oWallet = new Wallet();
         Currency oCurrency = new Currency();
         oCurrency.setsCurrency_name("USDT");
-        oCurrency.setdCurrency_amount(50.00);
+        oCurrency.setdCurrency_amount(500.00);
         oWallet.setsWallet_id(user_id + "_1");
         oWallet.setsUser_id(user_id);
         oWallet.setsCurrency(oCurrency);
