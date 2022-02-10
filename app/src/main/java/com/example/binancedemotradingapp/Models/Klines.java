@@ -3,7 +3,6 @@ package com.example.binancedemotradingapp.Models;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class Klines {
     private String open_time;

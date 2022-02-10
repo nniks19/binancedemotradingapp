@@ -1,54 +1,52 @@
 package com.example.binancedemotradingapp.Fragments;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
+import com.example.binancedemotradingapp.Activities.MainActivity;
 import com.example.binancedemotradingapp.Activities.MenuActivity;
 import com.example.binancedemotradingapp.R;
-import com.example.binancedemotradingapp.Models.User;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.Objects;
+
+
 public class ProfileFragment extends Fragment {
+    private FirebaseAuth mAuth;
 
-
+    private Button btnLogout;
     public ProfileFragment() {
         // Required empty public constructor
-    }
-
-    public static ProfileFragment newInstance(String param1, String param2) {
-        ProfileFragment fragment = new ProfileFragment();
-        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        String userId = ((MenuActivity) getActivity()).user_id;
+        String userId = ((MenuActivity) requireActivity()).user_id;
         View returnView = inflater.inflate(R.layout.fragment_profile, container, false);
+        mAuth = FirebaseAuth.getInstance();
+        btnLogout = returnView.findViewById(R.id.btnLogout);
+        btnLogoutOnClickListener();
         EditText txtName = returnView.findViewById(R.id.editTextTextPersonName);
         EditText txtSurname = returnView.findViewById(R.id.editTextTextPersonSurname);
         EditText txtEmail = returnView.findViewById(R.id.editTextTextEmailAddress);
@@ -58,10 +56,10 @@ public class ProfileFragment extends Fragment {
         myRef.child("users").child(userId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                txtName.setText(dataSnapshot.child("name").getValue().toString());
-                txtSurname.setText(dataSnapshot.child("surname").getValue().toString());
-                txtEmail.setText(dataSnapshot.child("email").getValue().toString());
-                txtPhoneNumber.setText(dataSnapshot.child("phoneNumber").getValue().toString());
+                txtName.setText(Objects.requireNonNull(dataSnapshot.child("name").getValue()).toString());
+                txtSurname.setText(Objects.requireNonNull(dataSnapshot.child("surname").getValue()).toString());
+                txtEmail.setText(Objects.requireNonNull(dataSnapshot.child("email").getValue()).toString());
+                txtPhoneNumber.setText(Objects.requireNonNull(dataSnapshot.child("phoneNumber").getValue()).toString());
             }
 
             @Override
@@ -71,4 +69,31 @@ public class ProfileFragment extends Fragment {
 
         return returnView;
     }
+    private void btnLogoutOnClickListener(){
+
+        btnLogout.setOnClickListener(view -> {
+            AlertDialog.Builder builder;
+            builder = new AlertDialog.Builder(getContext());
+            builder.setMessage(getString(R.string.are_you_sure_logout))
+                    .setPositiveButton(getString(R.string.yes), (dialog, id) -> {
+                        // Pritisak na tipku da
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        mAuth.signOut();
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |  Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        requireActivity().finishAffinity();
+                        Toast.makeText(getContext(), getString(R.string.logout_success),
+                                Toast.LENGTH_SHORT).show();
+                    })
+                    .setNegativeButton(getString(R.string.no), (dialog, id) -> {
+                        dialog.cancel();
+                        Toast.makeText(getContext(), getString(R.string.cancel_logout),
+                                Toast.LENGTH_SHORT).show();
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
+
+        });
+    }
 }
+

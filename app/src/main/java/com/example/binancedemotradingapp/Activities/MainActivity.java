@@ -1,29 +1,17 @@
 package com.example.binancedemotradingapp.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.binancedemotradingapp.Models.Symbol;
-import com.example.binancedemotradingapp.Models.SymbolResponse;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.binancedemotradingapp.R;
-import com.example.binancedemotradingapp.RetrofitClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class MainActivity extends AppCompatActivity {
-    private Button btnRegister;
-    private Button btnLogin;
     private FirebaseAuth mAuth;
 
 
@@ -40,21 +28,15 @@ public class MainActivity extends AppCompatActivity {
 
         }
         mAuth = FirebaseAuth.getInstance();
-        btnRegister = findViewById(R.id.btnRegister);
-        btnLogin = findViewById(R.id.btnLogin);
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
+        Button btnRegister = findViewById(R.id.btnRegister);
+        Button btnLogin = findViewById(R.id.btnLogin);
+        btnRegister.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+            startActivity(intent);
         });
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
+        btnLogin.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
         });
 
     }
@@ -62,10 +44,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        // Provjera je li korisnik prijavljen (non-null) i promjena activity-a ako je .
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
             Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+            intent.putExtra("user_id", currentUser.getUid());
+            startActivity(intent);
+            finishAffinity();
         }
     }
+
 }

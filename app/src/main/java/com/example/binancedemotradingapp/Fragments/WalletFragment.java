@@ -1,16 +1,15 @@
 package com.example.binancedemotradingapp.Fragments;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.example.binancedemotradingapp.Activities.MenuActivity;
 import com.example.binancedemotradingapp.R;
@@ -20,11 +19,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.TimeZone;
+import java.util.Objects;
 
 public class WalletFragment extends Fragment {
 
@@ -34,12 +30,6 @@ public class WalletFragment extends Fragment {
 
     public WalletFragment() {
         // Required empty public constructor
-    }
-    public static WalletFragment newInstance() {
-        WalletFragment fragment = new WalletFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
@@ -60,7 +50,7 @@ public class WalletFragment extends Fragment {
         myRef.child("wallets").child(userId + "_1").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                txtBalance.setText(dataSnapshot.child("oCurrency").child("dCurrency_amount").getValue().toString() + " " + dataSnapshot.child("oCurrency").child("sCurrency_name").getValue().toString());
+                txtBalance.setText(Objects.requireNonNull(dataSnapshot.child("oCurrency").child("dCurrency_amount").getValue()) + " " + Objects.requireNonNull(dataSnapshot.child("oCurrency").child("sCurrency_name").getValue()));
                 ArrayList<String> arrayList= new ArrayList<>();
                 /*Date date = new Date(Long.parseLong(dataSnapshot.child("lTimeStamp").getValue().toString()));
                 DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy, HH:mm:ss");

@@ -64,6 +64,11 @@
     <string name="update_profile">Ažuriraj</string>
     <string name="password_is_required">Nova lozinka - obavezan unos</string>
     <string name="pin_is_required">Vaš pin (4 znamenke) - obavezan unos</string>
+    <string name="btn_logout">Odjava</string>
+    <!--AlertDialog  Logout -->
+    <string name="are_you_sure_logout">Jeste li sigurni da se želite odjaviti?</string>
+    <string name="cancel_logout">Odustali ste od odjave.</string>
+    <string name="logout_success">Uspješno ste se odjavili!</string>
     <!--Trade Fragment-->
     <string name="choose_pair">Odaberite par</string>
     <string name="price_info">Cijena: </string>

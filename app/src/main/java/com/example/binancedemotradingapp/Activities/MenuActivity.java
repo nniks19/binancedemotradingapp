@@ -22,7 +22,9 @@ public class MenuActivity extends AppCompatActivity {
             if (extras != null) {
                 String login_message = extras.getString("login_success");
                 user_id = extras.getString("user_id");
-                Toast.makeText(MenuActivity.this, login_message, Toast.LENGTH_SHORT).show();
+                if (login_message != null) {
+                    Toast.makeText(MenuActivity.this, login_message, Toast.LENGTH_SHORT).show();
+                }
                 BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
                 NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
                 if (navHostFragment != null) {
