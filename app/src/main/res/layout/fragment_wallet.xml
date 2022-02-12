@@ -33,25 +33,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtViewCurrentBalance" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="151dp"
-            android:text="Dodati: Od toga koliko je u kupovini"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtViewCurrentBalance" />
-
-        <ListView
-            android:id="@+id/listViewTrades"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewTrades"
             android:layout_width="409dp"
-            android:layout_height="423dp"
-            android:layout_marginTop="8dp"
+            android:layout_height="532dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/txtViewBalanceAmount" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
