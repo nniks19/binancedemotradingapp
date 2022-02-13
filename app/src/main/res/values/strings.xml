@@ -12,7 +12,7 @@
     <string name="hintpassword">Lozinka</string>
     <string name="hintphonenum">Broj mobitela</string>
     <string name="hintPIN">PIN (4 znamenke)</string>
-    <string name="registrationSuccess">Uspješno ste se registrirali! Nastavite na prijavu.</string>
+    <string name="registrationSuccess">Uspješno ste se registrirali!</string>
     <!--Login screen-->
     <string name="hintloginemail">Email</string>
     <string name="hintloginpassword">Lozinka</string>
@@ -57,6 +57,26 @@
     <string name="welcome_text">Dobrodošli</string>
     <!--Wallet Fragment-->
     <string name="current_balance">Trenutno stanje</string>
+    <string name="show_active_trades">Prikaz trgovanja</string>
+    <string name="trade_date">Datum i vrijeme</string>
+    <string name="amount_trade">Iznos (USD)</string>
+    <string name="pair_trade">Par</string>
+
+    <!-- TradeAdapter Dialog -->
+    <string name="trade_buy_date">Datum kupnje:</string>
+    <string name="trade_pair">Par:</string>
+    <string name="trade_amount">Količina:</string>
+    <string name="trade_investment">Ulog (USD):</string>
+    <string name="trade_current_price">Trenutna cijena:</string>
+    <string name="trade_sell_price">Prodajete za:</string>
+    <string name="trade_sell_price_red">Prodano za:</string>
+    <string name="trade_sold_price">Cijena u trenutku prodaje:</string>
+    <string name="trade_bought_price">Cijena u trenutku kupnje:</string>
+    <string name="sell_success">Prodaja uspješna!</string>
+    <string name="cancel_sell">Odustali ste od prodaje!</string>
+    <string name="time_expired_sell">Vrijeme za prodaju je isteklo!</string>
+    <string name="info_sell_title">Prodaja kriptovalute</string>
+
     <!--Wallets Logs Class-->
     <string name="creation_date">Datum kreiranja: </string>
     <!--Profile Fragment-->

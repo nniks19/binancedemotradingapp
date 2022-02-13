@@ -8,6 +8,15 @@ public class Trade {
     private String sSell_price;
     private String sStatus;
     private Long lTimestamp;
+    public String sKey;
+    public String getsKey() {
+        return sKey;
+    }
+
+    public void setsKey(String sKey) {
+        this.sKey = sKey;
+    }
+
 
     public Long getlTimestamp() {
         return lTimestamp;
