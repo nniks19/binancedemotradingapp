@@ -54,7 +54,7 @@ public class ChartFragment extends Fragment {
     public boolean isRunning = false;
     public String makeNewLine = "\n";
     public String chosenSymbol = "BTCUSDT";
-    public String chosenTimeFrame = "15m";
+    public String chosenTimeFrame = "1m";
     public int redCandleCount = 0;
     public int greenCandleCount = 0;
     public int equalCandleCount = 0;
@@ -99,9 +99,11 @@ public class ChartFragment extends Fragment {
         if(!isRunning) {
             isRunning = true;
             candleChart.invalidate();
+            candleChart.clear();
+            XAxis xAxis = candleChart.getXAxis();
+            xAxis.setValueFormatter(null);
             candleChart.notifyDataSetChanged();
             lKlines.clear();
-            candleChart.clear();
             dates.clear();
             arrayCandles.clear();
             redCandleCount = 0;
@@ -159,7 +161,6 @@ public class ChartFragment extends Fragment {
 
                         ));
                     }
-
                     CandleDataSet dataSetCandle = new CandleDataSet(arrayCandles, "Svijeće");
 
                     dataSetCandle.setColor(Color.rgb(80, 80, 80));
@@ -206,7 +207,7 @@ public class ChartFragment extends Fragment {
                                                     getString(R.string.high) + " " + Float.parseFloat(oKline.getHigh()) + " USD" + makeNewLine +
                                                     getString(R.string.low) + " " + Float.parseFloat(oKline.getLow()) + " USD" + makeNewLine +
                                                     getString(R.string.close) + " " + Float.parseFloat(oKline.getClose()) + " USD" + makeNewLine +
-                                                    getString(R.string.volume) + " " + Float.parseFloat(oKline.getVolume()) * 1000 + " USD" + makeNewLine +
+                                                    getString(R.string.volume) + makeNewLine + Double.parseDouble(oKline.getVolume()) + " " + chosenSymbol.replace("USDT","") + makeNewLine +
                                                     getString(R.string.date_info) + makeNewLine + getString(R.string.open_info) + makeNewLine +
                                                     getString(R.string.high_info) + makeNewLine + getString(R.string.low_info) + makeNewLine +
                                                     getString(R.string.close_info) + makeNewLine + getString(R.string.volume_info) + makeNewLine

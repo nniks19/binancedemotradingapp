@@ -55,18 +55,25 @@
     <string name="binance_logo_description">Slika Binance logotipa</string>
     <!--Home fragment-->
     <string name="welcome_text">Dobrodošli</string>
+    <string name="stats_info">Vaša statistika</string>
+    <string name="total_trades">Ukupan broj kupnji</string>
+    <string name="total_sell_info">Ukupan broj prodaja</string>
+    <string name="trade_trades_plus">Broj trgovanja u dobitku</string>
+    <string name="trade_trades_minus">Broj trgovanja u gubitku</string>
+    <string name="profit_info">Ukupan dobitak (USDT)</string>
+    <string name="register_second_length_info">Registrirani ste (sekundi)</string>
     <!--Wallet Fragment-->
     <string name="current_balance">Trenutno stanje</string>
     <string name="show_active_trades">Prikaz trgovanja</string>
     <string name="trade_date">Datum i vrijeme</string>
-    <string name="amount_trade">Iznos (USD)</string>
+    <string name="amount_trade">Iznos (USDT)</string>
     <string name="pair_trade">Par</string>
 
     <!-- TradeAdapter Dialog -->
     <string name="trade_buy_date">Datum kupnje:</string>
     <string name="trade_pair">Par:</string>
     <string name="trade_amount">Količina:</string>
-    <string name="trade_investment">Ulog (USD):</string>
+    <string name="trade_investment">Ulog (USDT):</string>
     <string name="trade_current_price">Trenutna cijena:</string>
     <string name="trade_sell_price">Prodajete za:</string>
     <string name="trade_sell_price_red">Prodano za:</string>
@@ -91,14 +98,14 @@
     <string name="logout_success">Uspješno ste se odjavili!</string>
     <!--Trade Fragment-->
     <string name="choose_pair">Odaberite par</string>
-    <string name="price_info">Cijena: </string>
+    <string name="price_info">Cijena (USDT): </string>
     <string name="buy">Kupi</string>
     <string name="sell">Prodaj</string>
     <string name="buy_amount">Unesite iznos u dolarima</string>
     <string name="invalid_pin">Pogrešan pin!</string>
     <string name="amount_missing">Potrebno je upisati iznos za koji kupujete kriptovalutu!</string>
     <string name="amount_greater_than">Upisan iznos je veći od dostupnog iznosa sa Vašeg novčanika!</string>
-    <string name="amount_greater_than_ten">Iznos kupovine mora biti veći od 10 USD!</string>
+    <string name="amount_greater_than_ten">Iznos kupovine mora biti veći od 10 USDT!</string>
 
     <!--Trade Buy Dialog-->
     <string name="info_buy_title">Kupovina</string>
@@ -123,7 +130,7 @@
     <string name="high">High:</string>
     <string name="low">Low:</string>
     <string name="close">Close:</string>
-    <string name="volume">Volumen:</string>
+    <string name="volume">Volumen (u tisućama):</string>
     <string name="date_info">Datum i vrijeme odabrane svijeće</string>
     <string name="open_info">Početna cijena odabrane svijeće</string>
     <string name="high_info">Najviša cijena odabrane svijeće</string>
@@ -140,7 +147,7 @@
     <string name="equal_candle_count">Broj svijeća sa istom prethodnom close cijenom:</string>
     <!-- TimeFrames -->
     <string name="min_15">15m</string>
-    <string name="h_1">1h</string>
-    <string name="d_1">1d</string>
+    <string name="min_1">1m</string>
+    <string name="min_5">5m</string>
 </resources>
 
