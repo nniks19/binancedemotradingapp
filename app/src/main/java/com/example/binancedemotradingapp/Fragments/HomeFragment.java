@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
 import java.util.Objects;
 
 
@@ -30,6 +31,7 @@ public class HomeFragment extends Fragment {
     TextView txtViewTradesMinus;
     TextView txtViewProfit;
     TextView txtRegisterSecondLength;
+    TextView txtViewTradesEquals;
     String userId;
     public HomeFragment() {
         // Required empty public constructor
@@ -52,6 +54,7 @@ public class HomeFragment extends Fragment {
         txtViewTradesMinus = returnView.findViewById(R.id.txtViewTradesMinus);
         txtViewProfit = returnView.findViewById(R.id.txtViewProfit);
         txtRegisterSecondLength = returnView.findViewById(R.id.txtRegisterSecondLength);
+        txtViewTradesEquals = returnView.findViewById(R.id.txtViewTradesEquals);
         setNameSurname();
         getStats();
         return returnView;
@@ -81,6 +84,7 @@ public class HomeFragment extends Fragment {
                 int NumOfSells = 0;
                 int NumOfPositiveTrades = 0;
                 int NumOfNegativeTrades = 0;
+                int NumOfEqualTrades = 0;
                 float TotalProfit = 0.00f;
                 for (DataSnapshot childd : snapshot.getChildren()) {
                     if (Objects.requireNonNull(childd.child("sStatus").getValue()).toString().equals("closed")) {
@@ -93,12 +97,19 @@ public class HomeFragment extends Fragment {
                             NumOfNegativeTrades = NumOfNegativeTrades + 1;
                             TotalProfit += Float.parseFloat(Objects.requireNonNull(childd.child("sProfit").getValue()).toString()) - Float.parseFloat(Objects.requireNonNull(childd.child("sAmount").getValue()).toString());
                         }
+                        if(Float.parseFloat(Objects.requireNonNull(childd.child("sProfit").getValue()).toString()) < Float.parseFloat(Objects.requireNonNull(childd.child("sAmount").getValue()).toString())){
+                            NumOfEqualTrades = NumOfEqualTrades + 1;
+                        }
                     }
                 }
                 txtTotalSell.setText(String.valueOf(NumOfSells));
                 txtViewTradesPlus.setText(String.valueOf(NumOfPositiveTrades));
                 txtViewTradesMinus.setText(String.valueOf(NumOfNegativeTrades));
-                txtViewProfit.setText(String.valueOf(TotalProfit));
+                txtViewTradesEquals.setText(String.valueOf(NumOfEqualTrades));
+                DecimalFormat df = new DecimalFormat();
+                df.setMaximumFractionDigits(2);
+                String sTotalProfit = df.format(TotalProfit).replace(",",".")+ " USDT";
+                txtViewProfit.setText(sTotalProfit);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -129,4 +140,6 @@ public class HomeFragment extends Fragment {
             refreshCurrentDateTime(lRegisterTimestamp);
         }, 1000);
     }
+    
+
 }

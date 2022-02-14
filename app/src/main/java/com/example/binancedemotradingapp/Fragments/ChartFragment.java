@@ -37,6 +37,8 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,13 +79,13 @@ public class ChartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         returnView = inflater.inflate(R.layout.fragment_chart, container, false);
-        candleChart = (CandleStickChart) returnView.findViewById(R.id.candlestick_chart);
+        candleChart = returnView.findViewById(R.id.candlestick_chart);
         candleChart.setTouchEnabled(true);
         candleChart.setNoDataText(getString(R.string.data_loading));
         Paint p = candleChart.getPaint(Chart.PAINT_INFO);
         p.setColor(Color.rgb(0,0,0));
         Description description = candleChart.getDescription();
-        description.setText("...");
+        description.setText("");
         candleChart.setBackgroundColor(getResources().getColor(R.color.bckgrnd_color));
         candleChart.getXAxis().setPosition(XAxisPosition.BOTTOM_INSIDE);
 
@@ -199,6 +201,8 @@ public class ChartFragment extends Fragment {
                             int entry_index = Math.round(e.getX());
                             String date = dates.get(entry_index);
                             Klines oKline = lKlines.get(entry_index);
+                            DecimalFormat df = new DecimalFormat();
+                            df.setMaximumFractionDigits(2);
                             new AlertDialog.Builder(getContext())
                                     .setTitle(getString(R.string.alert_dialog_candle_info_title))
                                     .setMessage(
@@ -207,7 +211,7 @@ public class ChartFragment extends Fragment {
                                                     getString(R.string.high) + " " + Float.parseFloat(oKline.getHigh()) + " USD" + makeNewLine +
                                                     getString(R.string.low) + " " + Float.parseFloat(oKline.getLow()) + " USD" + makeNewLine +
                                                     getString(R.string.close) + " " + Float.parseFloat(oKline.getClose()) + " USD" + makeNewLine +
-                                                    getString(R.string.volume) + makeNewLine + Double.parseDouble(oKline.getVolume()) + " " + chosenSymbol.replace("USDT","") + makeNewLine +
+                                                    getString(R.string.volume) + makeNewLine + df.format(Double.parseDouble(oKline.getVolume()) * 1000).replace(".","").replace(",",".") + " " + chosenSymbol.replace("USDT","") + makeNewLine +
                                                     getString(R.string.date_info) + makeNewLine + getString(R.string.open_info) + makeNewLine +
                                                     getString(R.string.high_info) + makeNewLine + getString(R.string.low_info) + makeNewLine +
                                                     getString(R.string.close_info) + makeNewLine + getString(R.string.volume_info) + makeNewLine
@@ -234,7 +238,7 @@ public class ChartFragment extends Fragment {
         }
     }
     private void getSymbols(){
-        SearchableSpinner dropdown = (SearchableSpinner) returnView.findViewById(R.id.spinnerChartPairs);
+        SearchableSpinner dropdown = returnView.findViewById(R.id.spinnerChartPairs);
         dropdown.setTitle(getString(R.string.choose_pair));
         Call<SymbolResponse> call = RetrofitClient.getInstance().getMyApi().getSymbols();
         call.enqueue(new Callback<SymbolResponse>() {

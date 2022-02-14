@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -43,6 +43,7 @@ public class TradeAdapter extends  RecyclerView.Adapter<TradeAdapter.tradeViewHo
     Context context;
     private final TradeOnClickListener listener;
     public String current_price;
+    public boolean isPositive = false;
     String userId;
 
     public TradeAdapter(Context ct, ArrayList<Trade> tl, TradeOnClickListener tradelistener){
@@ -66,52 +67,67 @@ public class TradeAdapter extends  RecyclerView.Adapter<TradeAdapter.tradeViewHo
         holder.txtViewTradeDate.setText(format.format(date));
         holder.txtViewTradeSymbol.setText(mTradeList.get(holder.getAdapterPosition()).getsPair());
         if(mTradeList.get(holder.getAdapterPosition()).getsStatus().equals("active")){
-            holder.tradeConstraintLayout.setBackgroundColor(Color.rgb(0,255,0));
-            holder.cardViewTrade.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Call<List<SymbolPrice>> symbolPriceCall = RetrofitClient.getInstance().getMyApi().getSymbolPrices();
-                    symbolPriceCall.enqueue(new Callback<List<SymbolPrice>>() {
-                        @Override
-                        public void onResponse(Call<List<SymbolPrice>> call, Response<List<SymbolPrice>> response) {
-                            List<SymbolPrice> mySymbolPriceList = response.body();
-                            assert mySymbolPriceList != null;
-                            for (SymbolPrice oSymbolPrice : mySymbolPriceList) {
-                                if (oSymbolPrice.getSymbol().equals(mTradeList.get(holder.getAdapterPosition()).getsPair())) {
-                                    current_price = oSymbolPrice.getPrice();
-                                }
+            holder.tradeConstraintLayout.setBackgroundColor(Color.rgb(24,24,255));
+            holder.cardViewTrade.setOnClickListener(view -> {
+                Call<List<SymbolPrice>> symbolPriceCall = RetrofitClient.getInstance().getMyApi().getSymbolPrices();
+                symbolPriceCall.enqueue(new Callback<List<SymbolPrice>>() {
+                    @Override
+                    public void onResponse(Call<List<SymbolPrice>> call, Response<List<SymbolPrice>> response) {
+                        List<SymbolPrice> mySymbolPriceList = response.body();
+                        assert mySymbolPriceList != null;
+                        for (SymbolPrice oSymbolPrice : mySymbolPriceList) {
+                            if (oSymbolPrice.getSymbol().equals(mTradeList.get(holder.getAdapterPosition()).getsPair())) {
+                                current_price = oSymbolPrice.getPrice();
                             }
-                            makeAlertDialog(view,holder,format,date);
                         }
+                        makeAlertDialog(view,holder,format,date);
+                    }
 
-                        @Override
-                        public void onFailure(Call<List<SymbolPrice>> call, Throwable t) {
+                    @Override
+                    public void onFailure(Call<List<SymbolPrice>> call, Throwable t) {
 
-                        }
-                    });
+                    }
+                });
 
-                }
             });
         }
         if(mTradeList.get(holder.getAdapterPosition()).getsStatus().equals("closed")){
-            holder.cardViewTrade.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            isPositive = false;
+            Float razlika_cijena = Float.parseFloat(mTradeList.get(holder.getAdapterPosition()).getsAmount()) / Float.parseFloat(mTradeList.get(holder.getAdapterPosition()).getsBuy_price()) * Float.parseFloat(mTradeList.get(holder.getAdapterPosition()).getsSell_price());
+            if ((razlika_cijena - Float.parseFloat(mTradeList.get(holder.getAdapterPosition()).getsAmount()))>0){
+                holder.tradeConstraintLayout.setBackgroundColor(Color.rgb(15, 255, 0));
+            } else{
+                holder.tradeConstraintLayout.setBackgroundColor(Color.rgb(255, 15, 0));
+            }
+            if ( (razlika_cijena - Float.parseFloat(mTradeList.get(holder.getAdapterPosition()).getsAmount())) == 0 )
+            {
+                holder.tradeConstraintLayout.setBackgroundColor(Color.rgb(255, 128, 0));
+            }
+            holder.cardViewTrade.setOnClickListener(view -> {
                 FirebaseDatabase database = FirebaseDatabase.getInstance("https://binance-demo-trading-app-default-rtdb.europe-west1.firebasedatabase.app/");
                 DatabaseReference myRef = database.getReference();
                 myRef.child("trades").child(userId).child(mTradeList.get(holder.getAdapterPosition()).getsKey()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            Trade oTrade = dataSnapshot.getValue(Trade.class);
-                            AlertDialog.Builder builder;
+                        Float razlika_cijena;
+
+                        razlika_cijena = Float.parseFloat(mTradeList.get(holder.getAdapterPosition()).getsAmount()) / Float.parseFloat(mTradeList.get(holder.getAdapterPosition()).getsBuy_price()) * Float.parseFloat(mTradeList.get(holder.getAdapterPosition()).getsSell_price());
+                        AlertDialog.Builder builder;
+                        DecimalFormat df = new DecimalFormat();
+                        df.setMaximumFractionDigits(2);
+
+                        if ((razlika_cijena - Float.parseFloat(mTradeList.get(holder.getAdapterPosition()).getsAmount()))>0){
+                            isPositive = true;
+                        }
                             builder = new AlertDialog.Builder(view.getContext());
                             builder.setMessage(view.getContext().getString(R.string.trade_buy_date) + " " + format.format(date) + "\n"
                                     + view.getContext().getString(R.string.trade_pair) + " " + mTradeList.get(holder.getAdapterPosition()).getsPair() + "\n"
                                     + view.getContext().getString(R.string.trade_investment) + " " + mTradeList.get(holder.getAdapterPosition()).getsAmount() + "\n"
                                     + view.getContext().getString(R.string.trade_amount) + " " + Float.parseFloat(mTradeList.get(holder.getAdapterPosition()).getsAmount()) / Float.parseFloat(mTradeList.get(holder.getAdapterPosition()).getsBuy_price()) +  " " + mTradeList.get(holder.getAdapterPosition()).getsPair().replace("USDT","") + "\n"
-                                    + view.getContext().getString(R.string.trade_bought_price) + " " + Float.parseFloat(mTradeList.get(holder.getAdapterPosition()).getsBuy_price()) +"\n"
-                                    + view.getContext().getString(R.string.trade_sold_price) + " " + Float.parseFloat(mTradeList.get(holder.getAdapterPosition()).getsSell_price()) + "\n"
-                                    + view.getContext().getString(R.string.trade_sell_price_red) + " " + Float.parseFloat(mTradeList.get(holder.getAdapterPosition()).getsProfit()) + " USD"
+                                    + view.getContext().getString(R.string.trade_bought_price) + " " + Float.parseFloat(mTradeList.get(holder.getAdapterPosition()).getsBuy_price()) +" USDT\n"
+                                    + view.getContext().getString(R.string.trade_sold_price) + " " + Float.parseFloat(mTradeList.get(holder.getAdapterPosition()).getsSell_price()) + " USDT\n"
+                                    + view.getContext().getString(R.string.trade_sell_price_red) + " " + Float.parseFloat(mTradeList.get(holder.getAdapterPosition()).getsProfit()) + " USDT" + "\n"
+                                    + view.getContext().getString(R.string.trade_sell_profit) + " " + df.format(razlika_cijena - Float.parseFloat(mTradeList.get(holder.getAdapterPosition()).getsAmount())) + " USDT"
                             ).setNegativeButton(R.string.close_buy_fragment, (dialog, id) -> {
                                 dialog.cancel();
                             }).show();
@@ -122,9 +138,8 @@ public class TradeAdapter extends  RecyclerView.Adapter<TradeAdapter.tradeViewHo
 
                     }
                 });
-            }
-        });
-        holder.tradeConstraintLayout.setBackgroundColor(Color.rgb(255, 0, 0));
+            });
+
         }
 
 
@@ -161,14 +176,16 @@ public class TradeAdapter extends  RecyclerView.Adapter<TradeAdapter.tradeViewHo
         AlertDialog.Builder builder;
         builder = new AlertDialog.Builder(view.getContext());
         Float razlika_cijena;
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
         razlika_cijena = Float.parseFloat(mTradeList.get(holder.getAdapterPosition()).getsAmount()) / Float.parseFloat(mTradeList.get(holder.getAdapterPosition()).getsBuy_price()) * Float.parseFloat(current_price);
         builder.setMessage(view.getContext().getString(R.string.trade_buy_date) + " " + format.format(date) + "\n"
                 + view.getContext().getString(R.string.trade_pair) + " " + mTradeList.get(holder.getAdapterPosition()).getsPair() + "\n"
                 + view.getContext().getString(R.string.trade_investment) + " " + mTradeList.get(holder.getAdapterPosition()).getsAmount() + "\n"
                 + view.getContext().getString(R.string.trade_amount) + " " + Float.parseFloat(mTradeList.get(holder.getAdapterPosition()).getsAmount()) / Float.parseFloat(mTradeList.get(holder.getAdapterPosition()).getsBuy_price())+ " " + mTradeList.get(holder.getAdapterPosition()).getsPair().replace("USDT","") + "\n"
-                + view.getContext().getString(R.string.trade_current_price) + " " + Float.parseFloat(current_price) + " USD" +"\n"
-                + "\n"
-                + view.getContext().getString(R.string.trade_sell_price) + " " + razlika_cijena + " USD"
+                + view.getContext().getString(R.string.trade_current_price) + " " + Float.parseFloat(current_price) + " USDT" +"\n"
+                + view.getContext().getString(R.string.trade_sell_price) + " " + razlika_cijena + " USDT\n"
+                + view.getContext().getString(R.string.trade_sell_profit) + " " + df.format(razlika_cijena - Float.parseFloat(mTradeList.get(holder.getAdapterPosition()).getsAmount())) + " USDT"
                 )
                 .setPositiveButton(R.string.yes, (dialog, id) -> {
                     FirebaseDatabase database = FirebaseDatabase.getInstance("https://binance-demo-trading-app-default-rtdb.europe-west1.firebasedatabase.app/");

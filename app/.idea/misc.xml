@@ -5,13 +5,15 @@
       <map>
         <entry key="../../../../../layout/custom_preview.xml" value="0.246875" />
         <entry key="src/main/res/layout/activity_main.xml" value="0.22864583333333333" />
-        <entry key="src/main/res/layout/activity_menu.xml" value="0.18229166666666666" />
+        <entry key="src/main/res/layout/activity_menu.xml" value="0.35625" />
         <entry key="src/main/res/layout/fragment_chart.xml" value="0.18177083333333333" />
         <entry key="src/main/res/layout/fragment_home.xml" value="0.22864583333333333" />
         <entry key="src/main/res/layout/fragment_trade.xml" value="0.22864583333333333" />
         <entry key="src/main/res/layout/fragment_wallet.xml" value="0.18177083333333333" />
         <entry key="src/main/res/layout/row_trade.xml" value="0.35625" />
         <entry key="src/main/res/layout/trade_row.xml" value="0.35625" />
+        <entry key="src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1905" />
+        <entry key="src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1905" />
       </map>
     </option>
   </component>

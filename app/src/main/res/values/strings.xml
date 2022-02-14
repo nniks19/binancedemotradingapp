@@ -60,7 +60,8 @@
     <string name="total_sell_info">Ukupan broj prodaja</string>
     <string name="trade_trades_plus">Broj trgovanja u dobitku</string>
     <string name="trade_trades_minus">Broj trgovanja u gubitku</string>
-    <string name="profit_info">Ukupan dobitak (USDT)</string>
+    <string name="trade_trades_equals">Broj trgovanja na nuli</string>
+    <string name="profit_info">Ukupan dobitak/gubitak</string>
     <string name="register_second_length_info">Registrirani ste (sekundi)</string>
     <!--Wallet Fragment-->
     <string name="current_balance">Trenutno stanje</string>
@@ -76,6 +77,7 @@
     <string name="trade_investment">Ulog (USDT):</string>
     <string name="trade_current_price">Trenutna cijena:</string>
     <string name="trade_sell_price">Prodajete za:</string>
+    <string name="trade_sell_profit">Ukupni dobitak ili gubitak:</string>
     <string name="trade_sell_price_red">Prodano za:</string>
     <string name="trade_sold_price">Cijena u trenutku prodaje:</string>
     <string name="trade_bought_price">Cijena u trenutku kupnje:</string>
@@ -121,7 +123,7 @@
     <string name="time_expired">Vrijeme za kupnju je isteklo!</string>
 
     <!--MP Android Charts translate -->
-    <string name="data_loading">Učitavanje podataka...</string>
+    <string name="data_loading">Učitavanje podataka</string>
 
     <!--OnClick Alert Dialog -> ChartFragment -> Candle info -->
     <string name="alert_dialog_candle_info_title">Informacije o svijeći</string>
@@ -130,7 +132,7 @@
     <string name="high">High:</string>
     <string name="low">Low:</string>
     <string name="close">Close:</string>
-    <string name="volume">Volumen (u tisućama):</string>
+    <string name="volume">Volumen:</string>
     <string name="date_info">Datum i vrijeme odabrane svijeće</string>
     <string name="open_info">Početna cijena odabrane svijeće</string>
     <string name="high_info">Najviša cijena odabrane svijeće</string>
@@ -149,5 +151,10 @@
     <string name="min_15">15m</string>
     <string name="min_1">1m</string>
     <string name="min_5">5m</string>
+    <!-- Colors -->
+    <string name="orange_trade">0</string>
+    <string name="green_trade">Dobitak</string>
+    <string name="red_trade">Gubitak</string>
+    <string name="blue_trade">Aktivan</string>
 </resources>
 
